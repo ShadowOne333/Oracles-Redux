@@ -23,7 +23,7 @@ runScriptCommand:
 	.dw scriptCmd_jumpTable_memoryAddress ; 0x87
 	.dw scriptCmd_setCoords ; 0x88
 	.dw scriptCmd_setAngle ; 0x89
-	.dw scriptCmd_8a ; 0x8a
+	.dw scriptCmd_turnToFaceLink ; 0x8a
 	.dw scriptCmd_setSpeed ; 0x8b
 	.dw scriptCmd_checkCounter2ZeroAndReset ; 0x8c
 	.dw scriptCmd_setCollideRadii ; 0x8d
@@ -543,7 +543,7 @@ scriptCmd_loadSprite:
 	setrombank
 	ret
 
-scriptCmd_8a:
+scriptCmd_turnToFaceLink:
 	call objectGetAngleTowardEnemyTarget
 	add $04
 	and $18
