@@ -162,7 +162,11 @@ ballAndChain_stateA:
 ballAndChain_spawnSpikedBall:
 	; BUG: This checks for 4 enemy slots, but we actually need 4 part slots...
 	ld b,$04
+.ifdef ENABLE_BUGFIXES
+	call checkBPartSlotsAvailable
+.else
 	call checkBEnemySlotsAvailable
+.endif
 	ret nz
 
 	; Spawn the ball

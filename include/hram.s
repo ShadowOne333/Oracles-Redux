@@ -1,4 +1,4 @@
-.enum $ff80 export
+.RAMSECTION Hram_Main
 	hOamFunc			dsb $a	; $ff80
 
 	; General-purpose variables
@@ -130,9 +130,9 @@
 
 	; Marker for end of "normal" hram (memory gets cleared up to here upon game initialization)
 	hramEnd			 	.db	; $ffc0/$ffbe
-.ende
+.ENDS
 
-.enum $ffd8 export
+.RAMSECTION Hram_Music
 	; =====================================================================
 	; Music stuff
 	; =====================================================================
@@ -148,4 +148,4 @@
 	hSoundChannelAddresses			dsw 8	; $ffe2
 
 	hSoundData3				db	; $fff2
-.ende
+.ENDS

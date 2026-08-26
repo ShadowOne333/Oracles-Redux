@@ -20,7 +20,11 @@ enemyCode5a:
 	; Locate tree
 	ld a,TILEINDEX_MYSTICAL_TREE_TL
 	call findTileInRoom
+.ifdef ENABLE_BUGFIXES
+	jp nz,enemyDelete
+.else
 	jp nz,interactionDelete ; BUG: Wrong function call! (see below)
+.endif
 
 	; Move to that position
 	ld c,l
@@ -35,14 +39,19 @@ enemyCode5a:
 	and $0f
 	ld hl,wSeedTreeRefilledBitset
 	call checkFlag
+
+.ifdef ENABLE_BUGFIXES
+	jp z,enemyDelete
+.else
 	jp z,interactionDelete
 
 	; BUG: Above function call is wrong! Should be "enemyDelete"!
-	; If a seed tree's seeds are exhausted, instead of deleting this object, it will
-	; try to delete the interaction in the corresponding spot!
-	; This is not be very noticeable, because often this will be in slot $d0, which
-	; for interactions, is reserved for items from chests and stuff like that. But
-	; that can be manipulated by digging up enemies from the ground...
+	; If a seed tree's seeds are exhausted, instead of deleting this object, it will try to
+	; delete the interaction in the corresponding spot!
+	; This is not commonly a problem, because often this will be in slot $d0, which for
+	; interactions, is reserved for items from chests and stuff like that. But that can be
+	; manipulated by digging up enemies from the ground...
+.endif
 
 	ld a,(de)
 	swap a

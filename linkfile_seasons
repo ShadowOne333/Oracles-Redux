@@ -4,6 +4,7 @@ BUILD_DIR/audio.o
 
 [ramsections]
 bank 0 slot $c000 orga $c000 Wram0_c000
+bank 0 slot $c000 orga $c0a0 Wram0_c0a0
 bank 0 slot $c000 orga $c300 Wram0_c300
 bank 0 slot $c000 orga $c4c0 Wram0_c4c0
 bank 0 slot $c000 orga $c5b0 Wram0_c5b0
@@ -23,3 +24,6 @@ bank 7 slot $d000 orga $d800 RAM_7_Extra
 
 bank 0 slot $c000 appendto Wram0_cc00             Wram0_FloatingSection2
 bank 0 slot $c000 appendto Wram0_FloatingSection2 Wram0_FloatingSection1
+
+bank 0 slot $ff80 orga $ff80 Hram_Main
+bank 0 slot $ff80 orga $ffd8 Hram_Music
